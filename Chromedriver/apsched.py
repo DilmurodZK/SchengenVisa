@@ -3,16 +3,19 @@ from selenium import webdriver
 from selenium.webdriver.support.select import Select
 from selenium.webdriver.common.by import By
 import time
+from selenium.webdriver.chrome.service import Service
 
 options = webdriver.ChromeOptions()
 options.add_argument("--disable-blink-features=AutomationControlled")
 options.headless = True
+options.add_argument("--no-sandbox")
+
 
 async def send_message_interval(bot: Bot):
     url = "https://uz-appointment.visametric.com/uz/appointment-form"
-    driver = webdriver.Chrome(executable_path='E:\Programming\EPAM\ProjectVisa\Chromedriver\chromedriver.exe', options=options)
+    driver = webdriver.Chrome(service=Service('/home/visa_bot/chromedriver'), options=options)
     driver.maximize_window()
-    users = [1807668339, 1941579270]
+    users = [1807668339, ]
     try:
         driver.get(url=url)
         driver.find_element("xpath", "//select[@name='country']/option[text()='Schengen Visa']").click()
@@ -23,6 +26,7 @@ async def send_message_interval(bot: Bot):
         sel = Select(driver.find_element("xpath", "//select[@name='totalPerson']"))
         sel.select_by_visible_text("2 arizachi")
         info = driver.find_element(By.ID, "availableDayInfo")
+        time.sleep(10)
         if info.text == "Sana mavjud emas":
             for user in users:
                 await bot.send_message(chat_id=user, text="sana topilmadi")

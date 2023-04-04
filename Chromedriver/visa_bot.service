@@ -1,0 +1,12 @@
+[Unit]
+Description=Visa bot
+After=multi-user.target
+[Service]
+Type=simple
+Restart=always
+WorkingDirectory=/home/visa_bot/
+VIRTUAL_ENV=/home/visa_bot/venv
+Environment=PATH=$VIRTUAL_ENV/bin:$PATH
+ExecStart=/home/visa_bot/venv/bin/python /home/visa_bot/main.py
+[Install]
+WantedBY=multi-user.target
