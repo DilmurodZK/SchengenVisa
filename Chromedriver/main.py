@@ -3,7 +3,7 @@ import apsched
 from aiogram import types, Bot, Dispatcher
 from aiogram.utils import executor
 
-token = '6100984586:AAE26cYvfqkelqSpFjSl0ywayDDGv15yi7U'
+token = ''#Enter your Telegram Bot token
 bot = Bot(token=token)
 dp = Dispatcher(bot=bot)
 scheduler = AsyncIOScheduler(timezone="Asia/Tashkent")
