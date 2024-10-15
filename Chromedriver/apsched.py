@@ -15,7 +15,7 @@ async def send_message_interval(bot: Bot):
     url = "https://uz-appointment.visametric.com/uz/appointment-form"
     driver = webdriver.Chrome(service=Service('/home/visa_bot/chromedriver'), options=options)
     driver.maximize_window()
-    users = [1807668339, ]
+    users = [] #Enter your Telegram ID
     try:
         driver.get(url=url)
         driver.find_element("xpath", "//select[@name='country']/option[text()='Schengen Visa']").click()
